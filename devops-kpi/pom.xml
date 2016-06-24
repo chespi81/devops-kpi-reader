@@ -8,5 +8,6 @@
   <name>devops-kpi</name>
   <modules>
     <module>devops-kpi-model</module>
+    <module>devops-kpi-impl-jenkins</module>
   </modules>
 </project>
