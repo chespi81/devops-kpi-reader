@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.tinet.cl/devops-kpi/" targetNamespace="http://www.tinet.cl/devops-kpi/">
+    <complexType name="MedicionKPI">
+    	<sequence>
+    		<element name="nombre" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+
+            <element name="descripcion" type="string"></element>
+            <element name="fecha" type="dateTime" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="valor" type="double" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+
+    		<element name="interpretacion" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="TipoKPI">
+    	<sequence>
+    		<element name="nombre" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="descripcion" type="string"></element>
+    		<element name="minimo" type="tns:UmbralKPI"></element>
+    		<element name="maximo" type="tns:UmbralKPI"></element>
+    		<element name="generador" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="global" type="boolean"></element>
+    		<element name="proyecto" type="boolean"></element>
+    		<element name="desarrollador" type="boolean"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="UmbralKPI">
+    	<sequence>
+    		<element name="descripcion" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="valor" type="double"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="ConfiguracionReporte">
+    	<sequence>
+    		<element name="nombre" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+            <element name="titulo" type="string" maxOccurs="1" minOccurs="1"></element>
+            <element name="descripcion" type="string"></element>
+            <element name="kpis" type="tns:TiposKPI"
+            	maxOccurs="1" minOccurs="0">
+            </element>
+
+    	</sequence>
+    </complexType>
+
+    <complexType name="GeneradorKPI">
+    	<sequence>
+    		<element name="nombre" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="implementacion" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="parametros" type="tns:Parametros"
+    			maxOccurs="1" minOccurs="0">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Parametro">
+    	<sequence>
+    		<element name="nombre" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="valor" type="string" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Parametros">
+    	<sequence>
+    		<element name="parametro" type="tns:Parametro" maxOccurs="unbounded" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="ReporteGenerado">
+    	<sequence>
+    		<element name="nombre" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+            <element name="fecha" type="dateTime" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+            <element name="titulo" type="string" maxOccurs="1" minOccurs="1"></element>
+            <element name="descripcion" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="medicion" type="tns:MedicionKPI"
+    			maxOccurs="unbounded" minOccurs="1">
+    		</element>
+
+    	</sequence>
+    </complexType>
+
+    <complexType name="ConfiguracionGeneral">
+    	<sequence>
+    		<element name="generadores" type="tns:GeneradoresKPI" maxOccurs="1" minOccurs="0"></element>
+    		<element name="reportes" type="tns:Configuraciones" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="GeneradoresKPI">
+    	<sequence>
+    		<element name="generador-reporte" type="tns:GeneradorKPI" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Configuraciones">
+    	<sequence>
+    		<element name="reporte" type="tns:ConfiguracionReporte" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Reportes">
+    	<sequence>
+    		<element name="reporte" type="tns:ReporteGenerado" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+
+    <element name="configuracion" type="tns:ConfiguracionGeneral"></element>
+
+    <element name="reportes" type="tns:Reportes"></element>
+
+    <complexType name="TiposKPI">
+    	<sequence>
+    		<element name="kpi" type="tns:TipoKPI" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+</schema>
