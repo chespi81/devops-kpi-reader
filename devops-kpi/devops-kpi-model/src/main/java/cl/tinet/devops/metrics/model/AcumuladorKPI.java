@@ -15,19 +15,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ConfiguracionReporte complex type.
+ * <p>Java class for AcumuladorKPI complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ConfiguracionReporte">
+ * &lt;complexType name="AcumuladorKPI">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="titulo" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="kpis" type="{http://www.tinet.cl/devops-kpi/}TiposKPI" minOccurs="0"/>
+ *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="implementacion" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,21 +36,18 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ConfiguracionReporte", propOrder = {
+@XmlType(name = "AcumuladorKPI", propOrder = {
     "nombre",
-    "titulo",
     "descripcion",
-    "kpis"
+    "implementacion"
 })
-public class ConfiguracionReporte {
+public class AcumuladorKPI {
 
     @XmlElement(required = true)
     protected String nombre;
-    @XmlElement(required = true)
-    protected String titulo;
-    @XmlElement(required = true)
     protected String descripcion;
-    protected TiposKPI kpis;
+    @XmlElement(required = true)
+    protected String implementacion;
 
     /**
      * Gets the value of the nombre property.
@@ -75,30 +71,6 @@ public class ConfiguracionReporte {
      */
     public void setNombre(String value) {
         this.nombre = value;
-    }
-
-    /**
-     * Gets the value of the titulo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTitulo() {
-        return titulo;
-    }
-
-    /**
-     * Sets the value of the titulo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTitulo(String value) {
-        this.titulo = value;
     }
 
     /**
@@ -126,27 +98,27 @@ public class ConfiguracionReporte {
     }
 
     /**
-     * Gets the value of the kpis property.
+     * Gets the value of the implementacion property.
      * 
      * @return
      *     possible object is
-     *     {@link TiposKPI }
+     *     {@link String }
      *     
      */
-    public TiposKPI getKpis() {
-        return kpis;
+    public String getImplementacion() {
+        return implementacion;
     }
 
     /**
-     * Sets the value of the kpis property.
+     * Sets the value of the implementacion property.
      * 
      * @param value
      *     allowed object is
-     *     {@link TiposKPI }
+     *     {@link String }
      *     
      */
-    public void setKpis(TiposKPI value) {
-        this.kpis = value;
+    public void setImplementacion(String value) {
+        this.implementacion = value;
     }
 
 }

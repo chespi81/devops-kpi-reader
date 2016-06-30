@@ -3,8 +3,9 @@ package cl.tinet.devops.metrics.gen.jenkins;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
+import java.util.regex.Pattern;
 
-import cl.tinet.devops.metrics.gen.Generador;
+import cl.tinet.devops.metrics.gen.GeneradorAbstracto;
 import cl.tinet.devops.metrics.gen.GeneradorException;
 import cl.tinet.devops.metrics.gen.ParametroRequeridoException;
 import cl.tinet.devops.metrics.model.GeneradorKPI;
@@ -13,7 +14,7 @@ import cl.tinet.devops.metrics.util.DevOpsUtil;
 
 import com.offbytwo.jenkins.JenkinsServer;
 
-public abstract class GeneradorJenkins implements Generador {
+public abstract class GeneradorJenkins extends GeneradorAbstracto {
 
 	public static final String LLAVE_SERVIDOR_JENKINS = "SERVIDOR_JENKINS";
 
@@ -22,6 +23,10 @@ public abstract class GeneradorJenkins implements Generador {
 	public static final String LLAVE_USUARIO_JENKINS = "USUARIO_JENKINS";
 
 	public static final String LLAVE_PASSWORD_JENKINS = "PASSWORD_JENKINS";
+
+	public static final String LLAVE_REGEXP_PROYECTO = "REGEXP_PROYECTO";
+
+	public static final String LLAVE_REGEXP_RAMA = "REGEXP_RAMA";
 
 	private String nombre;
 
@@ -32,6 +37,10 @@ public abstract class GeneradorJenkins implements Generador {
 	private String username;
 
 	private String password;
+
+	private String ramaRegExp;
+
+	private String proyectoRegExp;
 
 	public String getNombre() {
 		return nombre;
@@ -60,6 +69,9 @@ public abstract class GeneradorJenkins implements Generador {
 				throw new ParametroRequeridoException(LLAVE_PASSWORD_JENKINS);
 			}
 		}
+		proyectoRegExp = DevOpsUtil
+				.getString(LLAVE_REGEXP_PROYECTO, parametros);
+		ramaRegExp = DevOpsUtil.getString(LLAVE_REGEXP_RAMA, parametros);
 	}
 
 	public JenkinsServer getJenkinsServer() throws URISyntaxException {
@@ -71,5 +83,21 @@ public abstract class GeneradorJenkins implements Generador {
 			server = new JenkinsServer(uri);
 		}
 		return server;
+	}
+
+	public boolean contabilizarProyecto(String proyecto) {
+		boolean result = true;
+		if (proyectoRegExp != null) {
+			result = Pattern.matches(proyectoRegExp, proyecto);
+		}
+		return result;
+	}
+
+	public boolean contabilizarRama(String rama) {
+		boolean result = true;
+		if (ramaRegExp != null) {
+			result = Pattern.matches(ramaRegExp, rama);
+		}
+		return result;
 	}
 }

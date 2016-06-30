@@ -17,7 +17,7 @@ public class DevOpsUtil {
 			throw new IllegalArgumentException(
 					"El nombre del parametro no debe ser null.");
 		}
-		if (parametros != null) {
+		if ((parametros != null) && (parametros.containsKey(nombre))) {
 			resultado = parametros.get(nombre).getValor();
 		}
 		return resultado;
@@ -26,8 +26,9 @@ public class DevOpsUtil {
 	public static String getString(String nombre, Parametros parametros) {
 		return getString(nombre, getParametros(parametros));
 	}
-	
-	public static Boolean getBoolean(String nombre, Map<String, Parametro> parametros) {
+
+	public static Boolean getBoolean(String nombre,
+			Map<String, Parametro> parametros) {
 		Boolean resultado = null;
 		String valor = getString(nombre, parametros);
 		if (valor != null) {
@@ -35,11 +36,11 @@ public class DevOpsUtil {
 		}
 		return resultado;
 	}
-	
+
 	public static Boolean getBoolean(String nombre, Parametros parametros) {
 		return getBoolean(nombre, getParametros(parametros));
 	}
-	
+
 	public static Map<String, Parametro> getParametros(Parametros parametros) {
 		Map<String, Parametro> mapParams = new HashMap<String, Parametro>();
 		if (parametros != null) {

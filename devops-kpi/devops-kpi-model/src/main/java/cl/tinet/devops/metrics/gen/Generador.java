@@ -1,9 +1,9 @@
 package cl.tinet.devops.metrics.gen;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Map;
 
 import cl.tinet.devops.metrics.model.GeneradorKPI;
-import cl.tinet.devops.metrics.model.MedicionKPI;
 import cl.tinet.devops.metrics.model.TipoKPI;
 
 public interface Generador {
@@ -12,5 +12,6 @@ public interface Generador {
 
 	void inicializar(GeneradorKPI config) throws GeneradorException;
 
-	List<MedicionKPI> calcular(TipoKPI kpi) throws GeneradorException;
+	Map<String, Collection<AcumuladorAbstracto>> calcular(TipoKPI... kpis)
+			throws GeneradorException;
 }
