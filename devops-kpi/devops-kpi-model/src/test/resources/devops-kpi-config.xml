@@ -1,2 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:configuracion xmlns:tns="http://www.tinet.cl/devops-kpi/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tinet.cl/devops-kpi/ ../../main/resources/cl/tinet/devops/metrics/devops-kpi.xsd "></tns:configuracion>
+<tns:configuracion xmlns:tns="http://www.tinet.cl/devops-kpi/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tinet.cl/devops-kpi/ ../../main/resources/cl/tinet/devops/metrics/devops-kpi.xsd ">
+	<acumuladores>
+		<acumulador>
+			<nombre>acumulador-dummy</nombre>
+			<descripcion>Acumulador Dummy</descripcion>
+			<implementacion>cl.tinet.devops.metrics.AcumuladorDummy</implementacion>
+		</acumulador>
+	</acumuladores>
+	<generadores>
+		<generador-reporte>
+			<nombre>generador-dummy</nombre>
+			<implementacion>cl.tinet.devops.metrics.gen.GeneradorDummy</implementacion>
+			<parametros>
+				<parametro>
+					<nombre>parametro1</nombre>
+					<valor>valor1</valor>
+				</parametro>
+				<parametro>
+					<nombre>parametro2</nombre>
+					<valor>valor2</valor>
+				</parametro>
+			</parametros>
+		</generador-reporte>
+	</generadores>
+	<reportes>
+		<reporte>
+			<nombre>reporte-1</nombre>
+			<titulo>Reporte de Prueba</titulo>
+			<descripcion>Este reporte representa bla bla bla.</descripcion>
+			<kpis>
+				<kpi>
+					<nombre>KPI1</nombre>
+					<acumulador>acumulador-dummy</acumulador>
+					<descripcion>Este es el valor {1}.</descripcion>
+					<generador>generador-dummy</generador>
+				</kpi>
+			</kpis>
+		</reporte>
+	</reportes>
+</tns:configuracion>

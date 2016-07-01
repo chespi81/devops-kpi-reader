@@ -16,8 +16,9 @@ public class AcumuladorTiempoBuildPromedio extends AcumuladorAbstracto {
 
 	private int cantidad;
 
-	public AcumuladorTiempoBuildPromedio(String nombre, boolean global) {
-		super(nombre, global);
+	public AcumuladorTiempoBuildPromedio(String nombre, String kpi,
+			boolean global) {
+		super(nombre, kpi, global);
 	}
 
 	@Override

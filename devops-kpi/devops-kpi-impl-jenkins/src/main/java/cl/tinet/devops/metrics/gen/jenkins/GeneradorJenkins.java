@@ -28,8 +28,6 @@ public abstract class GeneradorJenkins extends GeneradorAbstracto {
 
 	public static final String LLAVE_REGEXP_RAMA = "REGEXP_RAMA";
 
-	private String nombre;
-
 	private String servidor;
 
 	private boolean autenticado = true;
@@ -42,14 +40,10 @@ public abstract class GeneradorJenkins extends GeneradorAbstracto {
 
 	private String proyectoRegExp;
 
-	public String getNombre() {
-		return nombre;
-	}
-
 	public void inicializar(GeneradorKPI config) throws GeneradorException {
 		Map<String, Parametro> parametros = DevOpsUtil.getParametros(config
 				.getParametros());
-		nombre = config.getNombre();
+		setNombre(config.getNombre());
 		servidor = DevOpsUtil.getString(LLAVE_SERVIDOR_JENKINS, parametros);
 		if (servidor == null) {
 			throw new ParametroRequeridoException(LLAVE_SERVIDOR_JENKINS);

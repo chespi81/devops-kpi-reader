@@ -18,12 +18,9 @@ public abstract class AcumuladorBuildStatusVsTotal extends AcumuladorAbstracto {
 
 	private int totales;
 
-	public AcumuladorBuildStatusVsTotal(String nombre) {
-		super(nombre);
-	}
-
-	public AcumuladorBuildStatusVsTotal(String nombre, boolean global) {
-		super(nombre, global);
+	public AcumuladorBuildStatusVsTotal(String nombre, String kpi,
+			boolean global) {
+		super(nombre, kpi, global);
 	}
 
 	public abstract List<BuildResult> getResults();

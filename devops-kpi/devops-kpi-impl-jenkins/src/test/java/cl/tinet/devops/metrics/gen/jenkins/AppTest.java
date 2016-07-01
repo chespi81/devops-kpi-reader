@@ -79,7 +79,6 @@ public class AppTest extends TestCase {
 		umbral.setDescripcion("Maximo");
 		umbral.setValor(600000);
 		kpi1.setMaximo(umbral);
-		System.out.println("#######################");
 		GeneradorJenkinsBuildsKPI generador = new GeneradorJenkinsBuildsKPI();
 		GeneradorKPI config = new GeneradorKPI();
 		config.setNombre("JENKINS");
@@ -87,7 +86,7 @@ public class AppTest extends TestCase {
 		Parametros parametros = new Parametros();
 		Parametro p = new Parametro();
 		p.setNombre(GeneradorJenkins.LLAVE_SERVIDOR_JENKINS);
-		p.setValor("http://10.7.3.5:8080");
+		p.setValor("http://jenkins-dc.tinet.cl");
 		// p.setValor("http://jenkins.tinet.cl");
 		parametros.getParametro().add(p);
 
@@ -106,10 +105,10 @@ public class AppTest extends TestCase {
 		p.setValor("Lenovo8159");
 		parametros.getParametro().add(p);
 
-		// p = new Parametro();
-		// p.setNombre(GeneradorJenkins.LLAVE_REGEXP_PROYECTO);
-		// p.setValor("WOM-Portabilidad-Ejecutiva.*");
-		// parametros.getParametro().add(p);
+		p = new Parametro();
+		p.setNombre(GeneradorJenkins.LLAVE_REGEXP_PROYECTO);
+		p.setValor("WOM-Portabilidad.*");
+		parametros.getParametro().add(p);
 
 		p = new Parametro();
 		p.setNombre(GeneradorJenkins.LLAVE_REGEXP_RAMA);
@@ -121,6 +120,9 @@ public class AppTest extends TestCase {
 
 		Map<String, Collection<AcumuladorAbstracto>> map = generador.calcular(
 				kpi1, kpi2, kpi3);
+
+		System.out.println(map);
+
 		TipoKPI[] kpis = { kpi1, kpi2, kpi3 };
 		for (Entry<String, Collection<AcumuladorAbstracto>> entry : map
 				.entrySet()) {

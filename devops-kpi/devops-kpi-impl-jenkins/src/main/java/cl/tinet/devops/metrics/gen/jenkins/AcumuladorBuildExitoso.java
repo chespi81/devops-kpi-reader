@@ -10,8 +10,8 @@ public class AcumuladorBuildExitoso extends AcumuladorBuildStatus {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public AcumuladorBuildExitoso(String nombre, boolean global) {
-		super(nombre, global);
+	public AcumuladorBuildExitoso(String nombre, String kpi, boolean global) {
+		super(nombre, kpi, global);
 	}
 
 	@Override

@@ -15,8 +15,8 @@ public abstract class AcumuladorBuildStatus extends AcumuladorAbstracto {
 
 	private int acumulador;
 
-	public AcumuladorBuildStatus(String nombre, boolean global) {
-		super(nombre, global);
+	public AcumuladorBuildStatus(String nombre, String kpi, boolean global) {
+		super(nombre, kpi, global);
 	}
 
 	public abstract boolean isRegistrable(BuildWithDetails det);

@@ -1,10 +1,13 @@
 package cl.tinet.devops.metrics;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import javax.xml.datatype.DatatypeConfigurationException;
 
 import cl.tinet.devops.metrics.gen.AcumuladorAbstracto;
 import cl.tinet.devops.metrics.gen.AcumuladorException;
@@ -17,9 +20,12 @@ import cl.tinet.devops.metrics.model.ConfiguracionReporte;
 import cl.tinet.devops.metrics.model.Configuraciones;
 import cl.tinet.devops.metrics.model.GeneradorKPI;
 import cl.tinet.devops.metrics.model.GeneradoresKPI;
+import cl.tinet.devops.metrics.model.MedicionKPI;
 import cl.tinet.devops.metrics.model.ReporteGenerado;
 import cl.tinet.devops.metrics.model.TipoKPI;
 import cl.tinet.devops.metrics.model.TiposKPI;
+import cl.tinet.devops.metrics.model.UmbralKPI;
+import cl.tinet.devops.metrics.util.DevOpsUtil;
 
 public class ProcesadorReportes {
 
@@ -113,7 +119,8 @@ public class ProcesadorReportes {
 			throw new ConfiguracionException(
 					"El generador especificado no fue definido.");
 		}
-		AcumuladorAbstracto.obtenerAcumulador(kpi.getAcumulador());
+		AcumuladorAbstracto.obtenerAcumulador(kpi.getAcumulador(),
+				kpi.getNombre());
 	}
 
 	private void configurarGeneradores(GeneradoresKPI config)
@@ -155,9 +162,13 @@ public class ProcesadorReportes {
 			}
 			try {
 				for (AcumuladorKPI acum : acums) {
+					String impl = acum.getImplementacion();
+					if ((impl == null) || (impl.trim().equals(""))) {
+						throw new ConfiguracionException(
+								"Debe especificar la implementacion de acumulador.");
+					}
 					Class<?> clazz = Thread.currentThread()
-							.getContextClassLoader()
-							.loadClass(acum.getImplementacion());
+							.getContextClassLoader().loadClass(impl);
 					AcumuladorAbstracto.registrarAcumulador(acum.getNombre(),
 							clazz.asSubclass(AcumuladorAbstracto.class));
 				}
@@ -168,39 +179,103 @@ public class ProcesadorReportes {
 		}
 	}
 
-	public Collection<ReporteGenerado> generarReportes()
-			throws GeneradorException {
+	public Collection<ReporteGenerado> generar() throws GeneradorException {
 		if (!configurado) {
 			throw new IllegalStateException(
 					"El procesador no está inicializado.");
 		}
+		Collection<ReporteGenerado> reportes = new ArrayList<ReporteGenerado>();
 		for (ConfiguracionReporte config : configReportes) {
-			Map<String, Collection<AcumuladorAbstracto>> reporte = new HashMap<String, Collection<AcumuladorAbstracto>>();
-			Map<String, Collection<TipoKPI>> kpis = new HashMap<String, Collection<TipoKPI>>();
-			Collection<String> gens = new ArrayList<String>();
+			reportes.add(generarReporte(config, obtenerDatosReporte(config)));
+		}
+		return reportes;
+	}
+
+	private ReporteGenerado generarReporte(ConfiguracionReporte config,
+			Map<String, Collection<AcumuladorAbstracto>> datos)
+			throws GeneradorException {
+		try {
+			Map<String, TipoKPI> kpis = new HashMap<String, TipoKPI>();
 			for (TipoKPI kpi : config.getKpis().getKpi()) {
-				String llave = kpi.getGenerador();
-				if (!kpis.containsKey(llave)) {
-					gens.add(llave);
-					kpis.put(llave, new ArrayList<TipoKPI>());
-				}
-				kpis.get(llave).add(kpi);
+				kpis.put(kpi.getNombre(), kpi);
 			}
-			for (String gen : gens) {
-				Collection<TipoKPI> tk = kpis.get(gen);
-				Generador generador = generadores.get(gen);
-				Map<String, Collection<AcumuladorAbstracto>> datos = generador
-						.calcular(tk.toArray(new TipoKPI[0]));
-				for (Entry<String, Collection<AcumuladorAbstracto>> entry : datos.entrySet()) {
-					String llave = entry.getKey();
-					if (reporte.containsKey(llave)) {
-						reporte.get(llave).addAll(entry.getValue());
-					} else {
-						reporte.put(llave, entry.getValue());
+			ReporteGenerado reporte = new ReporteGenerado();
+			reporte.setNombre(config.getNombre());
+			reporte.setDescripcion(config.getDescripcion());
+			reporte.setFecha(DevOpsUtil.getFechaReporte());
+			reporte.setTitulo(config.getTitulo());
+			Collection<MedicionKPI> mediciones = reporte.getMedicion();
+			for (Entry<String, Collection<AcumuladorAbstracto>> entry : datos
+					.entrySet()) {
+				String llave = entry.getKey();
+				for (AcumuladorAbstracto acumulador : entry.getValue()) {
+					if (acumulador.isConDatos()) {
+						TipoKPI kpi = kpis.get(acumulador.getKpi());
+						MedicionKPI medicion = construirMedicion(kpi,
+								acumulador);
+						medicion.setGrupo(llave);
+						mediciones.add(medicion);
 					}
 				}
 			}
+			return reporte;
+		} catch (DatatypeConfigurationException e) {
+			throw new GeneradorException("Error generando el reporte.", e);
 		}
-		return null;
+	}
+
+	private MedicionKPI construirMedicion(TipoKPI kpi,
+			AcumuladorAbstracto acumulador)
+			throws DatatypeConfigurationException {
+		MedicionKPI medicion = new MedicionKPI();
+		medicion.setNombre(kpi.getNombre());
+		medicion.setFecha(DevOpsUtil.getFechaReporte(acumulador.getFecha()));
+		medicion.setValor(acumulador.calcular().doubleValue());
+		String inter = MessageFormat.format(kpi.getDescripcion(),
+				kpi.getNombre(), acumulador.calcular(),
+				obtenerUmbral(kpi.getMinimo()), obtenerUmbral(kpi.getMaximo()),
+				acumulador.getFecha());
+		medicion.setInterpretacion(inter);
+		medicion.setConsolidado(acumulador.isGlobal());
+		return medicion;
+	}
+
+	private Double obtenerUmbral(UmbralKPI umbral) {
+		Double valor = null;
+		if (umbral != null) {
+			valor = umbral.getValor();
+		}
+		return valor;
+	}
+
+	private Map<String, Collection<AcumuladorAbstracto>> obtenerDatosReporte(
+			ConfiguracionReporte config) throws GeneradorException {
+		Map<String, Collection<AcumuladorAbstracto>> reporte = new HashMap<String, Collection<AcumuladorAbstracto>>();
+		Map<String, Collection<TipoKPI>> kpis = new HashMap<String, Collection<TipoKPI>>();
+		Collection<String> gens = new ArrayList<String>();
+		for (TipoKPI kpi : config.getKpis().getKpi()) {
+			String llave = kpi.getGenerador();
+			if (!kpis.containsKey(llave)) {
+				gens.add(llave);
+				kpis.put(llave, new ArrayList<TipoKPI>());
+			}
+			kpis.get(llave).add(kpi);
+		}
+		for (String gen : gens) {
+			Collection<TipoKPI> tk = kpis.get(gen);
+			Generador generador = generadores.get(gen);
+			Map<String, Collection<AcumuladorAbstracto>> datos = generador
+					.calcular(tk.toArray(new TipoKPI[0]));
+			for (Entry<String, Collection<AcumuladorAbstracto>> entry : datos
+					.entrySet()) {
+				String llave = entry.getKey();
+				if (reporte.containsKey(llave)) {
+					reporte.get(llave).addAll(entry.getValue());
+				} else {
+					reporte.put(llave, entry.getValue());
+				}
+			}
+		}
+		return reporte;
 	}
 }

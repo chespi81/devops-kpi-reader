@@ -12,12 +12,9 @@ public class AcumuladorBuildExitosoVsTotal extends AcumuladorBuildStatusVsTotal 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public AcumuladorBuildExitosoVsTotal(String nombre) {
-		super(nombre);
-	}
-
-	public AcumuladorBuildExitosoVsTotal(String nombre, boolean global) {
-		super(nombre, global);
+	public AcumuladorBuildExitosoVsTotal(String nombre, String kpi,
+			boolean global) {
+		super(nombre, kpi, global);
 	}
 
 	@Override

@@ -13,12 +13,9 @@ public class AcumuladorBuildCompletadoVsTotal extends
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public AcumuladorBuildCompletadoVsTotal(String nombre) {
-		super(nombre);
-	}
-
-	public AcumuladorBuildCompletadoVsTotal(String nombre, boolean global) {
-		super(nombre, global);
+	public AcumuladorBuildCompletadoVsTotal(String nombre, String kpi,
+			boolean global) {
+		super(nombre, kpi, global);
 	}
 
 	@Override

@@ -10,8 +10,8 @@ public class AcumuladorBuildInestable extends AcumuladorBuildStatus {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public AcumuladorBuildInestable(String nombre, boolean global) {
-		super(nombre, global);
+	public AcumuladorBuildInestable(String nombre, String kpi, boolean global) {
+		super(nombre, kpi, global);
 	}
 
 	@Override

@@ -35,7 +35,7 @@ public class GeneradorJenkinsBuildsKPI extends GeneradorJenkins {
 							kpis, null, entry.getValue(), server);
 					acumuladores.put(entry.getKey(), datos.values());
 					for (TipoKPI kpi : kpis) {
-						obtenerAcumulador(kpi, global).acumular(
+						obtenerAcumulador(kpi, global, true).acumular(
 								datos.get(kpi.getNombre()));
 					}
 				}

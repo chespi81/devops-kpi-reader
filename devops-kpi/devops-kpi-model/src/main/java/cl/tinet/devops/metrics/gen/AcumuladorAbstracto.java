@@ -2,6 +2,7 @@ package cl.tinet.devops.metrics.gen;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,10 @@ public abstract class AcumuladorAbstracto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String nombre;
+
+	private String kpi;
+
+	private Date fecha;
 
 	private boolean global;
 
@@ -32,19 +37,20 @@ public abstract class AcumuladorAbstracto implements Serializable {
 		tipos.put(nombre, tipo);
 	}
 
-	public static AcumuladorAbstracto obtenerAcumulador(String nombre)
-			throws AcumuladorException {
-		return obtenerAcumulador(nombre, false);
+	public static AcumuladorAbstracto obtenerAcumulador(String nombre,
+			String kpi) throws AcumuladorException {
+		return obtenerAcumulador(nombre, kpi, false);
 	}
 
 	public static AcumuladorAbstracto obtenerAcumulador(String nombre,
-			boolean global) throws AcumuladorException {
+			String kpi, boolean global) throws AcumuladorException {
 		if (!tipos.containsKey(nombre)) {
 			throw new AcumuladorException("Acumulador no registrado: " + nombre);
 		}
 		try {
-			return tipos.get(nombre).getConstructor(String.class, Boolean.TYPE)
-					.newInstance(nombre, global);
+			return tipos.get(nombre)
+					.getConstructor(String.class, String.class, Boolean.TYPE)
+					.newInstance(nombre, kpi, global);
 		} catch (InstantiationException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException causa) {
@@ -53,12 +59,10 @@ public abstract class AcumuladorAbstracto implements Serializable {
 		}
 	}
 
-	public AcumuladorAbstracto(String nombre) {
-		this(nombre, false);
-	}
-
-	public AcumuladorAbstracto(String nombre, boolean global) {
+	public AcumuladorAbstracto(String nombre, String kpi, boolean global) {
 		this.nombre = nombre;
+		this.kpi = kpi;
+		this.fecha = new Date();
 		this.global = global;
 	}
 
@@ -74,13 +78,21 @@ public abstract class AcumuladorAbstracto implements Serializable {
 		return nombre;
 	}
 
+	public String getKpi() {
+		return kpi;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
 	public boolean isGlobal() {
 		return global;
 	}
 
 	@Override
 	public String toString() {
-		return "Acumulador:[acumulador='" + getNombre() + "', kpi='"
-				+ calcular() + "'";
+		return "Acumulador:[acumulador='" + getNombre() + "', kpi='" + getKpi()
+				+ "', valor='" + calcular() + "']";
 	}
 }

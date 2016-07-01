@@ -6,8 +6,8 @@
     			minOccurs="1">
     		</element>
 
-            <element name="descripcion" type="string"></element>
-            <element name="fecha" type="dateTime" maxOccurs="1"
+    		<element name="descripcion" type="string"></element>
+    		<element name="fecha" type="dateTime" maxOccurs="1"
     			minOccurs="1">
     		</element>
     		<element name="valor" type="double" maxOccurs="1"
@@ -16,8 +16,11 @@
 
     		<element name="interpretacion" type="string" maxOccurs="1"
     			minOccurs="0">
-    		</element>
+    		</element>
+
     	</sequence>
+    	<attribute name="grupo" type="string"></attribute>
+    	<attribute name="consolidado" type="boolean"></attribute>
     </complexType>
 
     <complexType name="TipoKPI">
