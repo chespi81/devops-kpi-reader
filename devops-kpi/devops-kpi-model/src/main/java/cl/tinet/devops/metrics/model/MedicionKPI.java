@@ -27,7 +27,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="interpretacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="grupo" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="kpi" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="tipo" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="cumplido" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *       &lt;attribute name="consolidado" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -57,8 +58,10 @@ public class MedicionKPI {
     protected String interpretacion;
     @XmlAttribute(name = "grupo")
     protected String grupo;
-    @XmlAttribute(name = "kpi")
-    protected String kpi;
+    @XmlAttribute(name = "tipo")
+    protected String tipo;
+    @XmlAttribute(name = "cumplido")
+    protected Boolean cumplido;
     @XmlAttribute(name = "consolidado")
     protected Boolean consolidado;
 
@@ -199,27 +202,51 @@ public class MedicionKPI {
     }
 
     /**
-     * Gets the value of the kpi property.
+     * Gets the value of the tipo property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getKpi() {
-        return kpi;
+    public String getTipo() {
+        return tipo;
     }
 
     /**
-     * Sets the value of the kpi property.
+     * Sets the value of the tipo property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setKpi(String value) {
-        this.kpi = value;
+    public void setTipo(String value) {
+        this.tipo = value;
+    }
+
+    /**
+     * Gets the value of the cumplido property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isCumplido() {
+        return cumplido;
+    }
+
+    /**
+     * Sets the value of the cumplido property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setCumplido(Boolean value) {
+        this.cumplido = value;
     }
 
     /**

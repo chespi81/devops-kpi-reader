@@ -19,9 +19,11 @@
     		</element>
 
     	</sequence>
-        <attribute name="grupo" type="string"></attribute>
-        <attribute name="kpi" type="string"></attribute>
-        <attribute name="consolidado" type="boolean"></attribute>
+    	<attribute name="grupo" type="string"></attribute>
+    	<attribute name="tipo" type="string"></attribute>
+        <attribute name="cumplido" type="boolean"></attribute>
+        <attribute name="consolidado" type="boolean"></attribute>
+
     </complexType>
 
     <complexType name="TipoKPI">

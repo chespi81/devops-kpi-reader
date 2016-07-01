@@ -232,13 +232,23 @@ public class ProcesadorReportes {
 			AcumuladorAbstracto acumulador)
 			throws DatatypeConfigurationException {
 		MedicionKPI medicion = new MedicionKPI();
-		medicion.setKpi(kpi.getAcumulador());
+		medicion.setTipo(kpi.getAcumulador());
 		medicion.setNombre(kpi.getNombre());
 		medicion.setFecha(DevOpsUtil.getFechaReporte(acumulador.getFecha()));
-		medicion.setValor(acumulador.calcular().doubleValue());
+		double valor = acumulador.calcular().doubleValue();
+		Double minimo = obtenerUmbral(kpi.getMinimo());
+		Double maximo = obtenerUmbral(kpi.getMaximo());
+		medicion.setValor(valor);
+		boolean cumplido = true;
+		if (minimo != null) {
+			cumplido = cumplido && (valor >= minimo);
+		}
+		if (maximo != null) {
+			cumplido = cumplido && (valor <= maximo);
+		}
+		medicion.setCumplido(cumplido);
 		String inter = MessageFormat.format(kpi.getDescripcion(),
-				kpi.getNombre(), acumulador.calcular(),
-				obtenerUmbral(kpi.getMinimo()), obtenerUmbral(kpi.getMaximo()),
+				kpi.getNombre(), acumulador.calcular(), minimo, maximo,
 				acumulador.getFecha());
 		medicion.setInterpretacion(inter);
 		medicion.setConsolidado(acumulador.isGlobal());
