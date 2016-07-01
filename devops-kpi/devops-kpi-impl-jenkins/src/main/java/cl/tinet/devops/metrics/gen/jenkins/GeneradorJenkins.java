@@ -44,7 +44,7 @@ public abstract class GeneradorJenkins extends GeneradorAbstracto {
 
 	private String proyectoRegExp;
 
-	private String grupoGlobal = VALOR_GRUPO_GLOBAL_PREDETERMINADO;
+	private String grupoGlobal;
 
 	public String getGrupoGlobal() {
 		return grupoGlobal;
@@ -76,6 +76,11 @@ public abstract class GeneradorJenkins extends GeneradorAbstracto {
 		proyectoRegExp = DevOpsUtil
 				.getString(LLAVE_REGEXP_PROYECTO, parametros);
 		ramaRegExp = DevOpsUtil.getString(LLAVE_REGEXP_RAMA, parametros);
+		grupoGlobal = DevOpsUtil.getString(LLAVE_GRUPO_GLOBAL, parametros);
+		if (grupoGlobal == null) {
+			grupoGlobal = VALOR_GRUPO_GLOBAL_PREDETERMINADO;
+		}
+
 	}
 
 	public JenkinsServer getJenkinsServer() throws URISyntaxException {
