@@ -1,11 +1,14 @@
-package cl.tinet.devops.metrics;
+package cl.tinet.devops.metrics.gen;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import cl.tinet.devops.metrics.gen.AcumuladorAbstracto;
-
 public class AcumuladorDummy extends AcumuladorAbstracto {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private static Logger logger = Logger.getLogger(AcumuladorDummy.class
 			.getName());

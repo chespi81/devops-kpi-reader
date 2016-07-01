@@ -6,7 +6,7 @@
 		<acumulador>
 			<nombre>acumulador-dummy</nombre>
 			<descripcion>Acumulador Dummy</descripcion>
-			<implementacion>cl.tinet.devops.metrics.AcumuladorDummy</implementacion>
+			<implementacion>cl.tinet.devops.metrics.gen.AcumuladorDummy</implementacion>
 		</acumulador>
 	</acumuladores>
 	<generadores>
