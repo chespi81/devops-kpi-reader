@@ -25,6 +25,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="valor" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *         &lt;element name="interpretacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="minimo" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *         &lt;element name="maximo" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="grupo" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="tipo" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -43,7 +45,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "descripcion",
     "fecha",
     "valor",
-    "interpretacion"
+    "interpretacion",
+    "minimo",
+    "maximo"
 })
 public class MedicionKPI {
 
@@ -56,6 +60,8 @@ public class MedicionKPI {
     protected XMLGregorianCalendar fecha;
     protected double valor;
     protected String interpretacion;
+    protected Double minimo;
+    protected Double maximo;
     @XmlAttribute(name = "grupo")
     protected String grupo;
     @XmlAttribute(name = "tipo")
@@ -175,6 +181,54 @@ public class MedicionKPI {
      */
     public void setInterpretacion(String value) {
         this.interpretacion = value;
+    }
+
+    /**
+     * Gets the value of the minimo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getMinimo() {
+        return minimo;
+    }
+
+    /**
+     * Sets the value of the minimo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setMinimo(Double value) {
+        this.minimo = value;
+    }
+
+    /**
+     * Gets the value of the maximo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getMaximo() {
+        return maximo;
+    }
+
+    /**
+     * Sets the value of the maximo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setMaximo(Double value) {
+        this.maximo = value;
     }
 
     /**

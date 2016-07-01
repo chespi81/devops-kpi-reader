@@ -18,6 +18,8 @@
     			minOccurs="0">
     		</element>
 
+    		<element name="minimo" type="double" maxOccurs="1" minOccurs="0"></element>
+    		<element name="maximo" type="double" maxOccurs="1" minOccurs="0"></element>
     	</sequence>
     	<attribute name="grupo" type="string"></attribute>
     	<attribute name="tipo" type="string"></attribute>

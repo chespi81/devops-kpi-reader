@@ -242,9 +242,11 @@ public class ProcesadorReportes {
 		boolean cumplido = true;
 		if (minimo != null) {
 			cumplido = cumplido && (valor >= minimo);
+			medicion.setMinimo(minimo);
 		}
 		if (maximo != null) {
 			cumplido = cumplido && (valor <= maximo);
+			medicion.setMaximo(maximo);
 		}
 		medicion.setCumplido(cumplido);
 		String inter = MessageFormat.format(kpi.getDescripcion(),
