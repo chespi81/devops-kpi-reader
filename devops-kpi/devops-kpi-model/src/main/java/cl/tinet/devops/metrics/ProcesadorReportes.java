@@ -286,11 +286,10 @@ public class ProcesadorReportes {
 			for (Entry<String, Collection<AcumuladorAbstracto>> entry : datos
 					.entrySet()) {
 				String llave = entry.getKey();
-				if (reporte.containsKey(llave)) {
-					reporte.get(llave).addAll(entry.getValue());
-				} else {
-					reporte.put(llave, entry.getValue());
+				if (!reporte.containsKey(llave)) {
+					reporte.put(llave, new ArrayList<AcumuladorAbstracto>());
 				}
+				reporte.get(llave).addAll(entry.getValue());
 			}
 		}
 		return reporte;
