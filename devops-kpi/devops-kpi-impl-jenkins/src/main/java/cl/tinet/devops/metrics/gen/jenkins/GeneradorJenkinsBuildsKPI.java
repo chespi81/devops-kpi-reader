@@ -40,7 +40,7 @@ public class GeneradorJenkinsBuildsKPI extends GeneradorJenkins {
 					}
 				}
 			}
-			acumuladores.put("GLOBALES", global.values());
+			acumuladores.put(getGrupoGlobal(), global.values());
 		} catch (URISyntaxException use) {
 			throw new GeneradorException(
 					"Error en la URL del servidor Jenkins.", use);

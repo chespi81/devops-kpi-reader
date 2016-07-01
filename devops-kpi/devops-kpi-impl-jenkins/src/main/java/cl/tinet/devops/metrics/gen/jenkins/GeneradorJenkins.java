@@ -28,6 +28,10 @@ public abstract class GeneradorJenkins extends GeneradorAbstracto {
 
 	public static final String LLAVE_REGEXP_RAMA = "REGEXP_RAMA";
 
+	public static final String LLAVE_GRUPO_GLOBAL = "GRUPO_GLOBAL";
+
+	public static final String VALOR_GRUPO_GLOBAL_PREDETERMINADO = "GLOBALES";
+
 	private String servidor;
 
 	private boolean autenticado = true;
@@ -39,6 +43,12 @@ public abstract class GeneradorJenkins extends GeneradorAbstracto {
 	private String ramaRegExp;
 
 	private String proyectoRegExp;
+
+	private String grupoGlobal = VALOR_GRUPO_GLOBAL_PREDETERMINADO;
+
+	public String getGrupoGlobal() {
+		return grupoGlobal;
+	}
 
 	public void inicializar(GeneradorKPI config) throws GeneradorException {
 		Map<String, Parametro> parametros = DevOpsUtil.getParametros(config

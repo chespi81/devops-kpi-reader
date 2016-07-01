@@ -47,25 +47,16 @@ public class AppTest extends TestCase {
 		TipoKPI kpi1 = new TipoKPI();
 		kpi1.setNombre("PRUEBA1");
 		kpi1.setDescripcion("{0}. Tiempo Promedio. Promedio {1}, Máximo {3}.");
-		kpi1.setGlobal(true);
-		kpi1.setProyecto(true);
 		kpi1.setAcumulador("promedio");
-		kpi1.setDesarrollador(false);
 
 		TipoKPI kpi2 = new TipoKPI();
 		kpi2.setNombre("PRUEBA2");
 		kpi2.setDescripcion("{0}. Tiempo Promedio. Promedio {1}, Máximo {3}.");
-		kpi2.setGlobal(true);
-		kpi2.setProyecto(true);
-		kpi2.setDesarrollador(false);
 		kpi2.setAcumulador("tasa-exito");
 
 		TipoKPI kpi3 = new TipoKPI();
 		kpi3.setNombre("PRUEBA3");
 		kpi3.setDescripcion("{0}. Tiempo Promedio. Promedio {1}, Máximo {3}.");
-		kpi3.setGlobal(true);
-		kpi3.setProyecto(true);
-		kpi3.setDesarrollador(false);
 		kpi3.setAcumulador("tasa-completado");
 
 		AcumuladorAbstracto.registrarAcumulador("promedio",

@@ -19,8 +19,9 @@
     		</element>
 
     	</sequence>
-    	<attribute name="grupo" type="string"></attribute>
-    	<attribute name="consolidado" type="boolean"></attribute>
+        <attribute name="grupo" type="string"></attribute>
+        <attribute name="kpi" type="string"></attribute>
+        <attribute name="consolidado" type="boolean"></attribute>
     </complexType>
 
     <complexType name="TipoKPI">
@@ -34,19 +35,16 @@
     		<element name="generador" type="string" maxOccurs="1"
     			minOccurs="1">
     		</element>
-            <element name="acumulador" type="string" maxOccurs="1" minOccurs="1"></element>
-            <element name="global" type="boolean"></element>
-    		<element name="proyecto" type="boolean"></element>
-    		<element name="desarrollador" type="boolean"></element>
+            <element name="acumulador" type="string" maxOccurs="1" minOccurs="1"></element>
     	</sequence>
     </complexType>
 
     <complexType name="UmbralKPI">
     	<sequence>
     		<element name="descripcion" type="string" maxOccurs="1"
-    			minOccurs="1">
+    			minOccurs="0">
     		</element>
-    		<element name="valor" type="double"></element>
+    		<element name="valor" type="double" maxOccurs="1" minOccurs="1"></element>
     	</sequence>
     </complexType>
 

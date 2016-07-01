@@ -137,6 +137,10 @@ public class ProcesadorReportes {
 		try {
 			for (GeneradorKPI def : defs) {
 				String implClass = def.getImplementacion();
+				if ((implClass == null) || (implClass.trim().equals(""))) {
+					throw new ConfiguracionException(
+							"Debe especificar la implementacion de generador.");
+				}
 				Class<?> clazz;
 				clazz = Thread.currentThread().getContextClassLoader()
 						.loadClass(implClass);
@@ -228,6 +232,7 @@ public class ProcesadorReportes {
 			AcumuladorAbstracto acumulador)
 			throws DatatypeConfigurationException {
 		MedicionKPI medicion = new MedicionKPI();
+		medicion.setKpi(kpi.getAcumulador());
 		medicion.setNombre(kpi.getNombre());
 		medicion.setFecha(DevOpsUtil.getFechaReporte(acumulador.getFecha()));
 		medicion.setValor(acumulador.calcular().doubleValue());
