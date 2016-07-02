@@ -20,18 +20,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="valor" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *         &lt;element name="interpretacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="minimo" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *         &lt;element name="maximo" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="id-kpi" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="grupo" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="tipo" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="cumplido" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="consolidado" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="global" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -41,18 +38,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MedicionKPI", propOrder = {
-    "nombre",
     "descripcion",
     "fecha",
     "valor",
-    "interpretacion",
-    "minimo",
-    "maximo"
+    "interpretacion"
 })
 public class MedicionKPI {
 
-    @XmlElement(required = true)
-    protected String nombre;
     @XmlElement(required = true)
     protected String descripcion;
     @XmlElement(required = true)
@@ -60,40 +52,14 @@ public class MedicionKPI {
     protected XMLGregorianCalendar fecha;
     protected double valor;
     protected String interpretacion;
-    protected Double minimo;
-    protected Double maximo;
+    @XmlAttribute(name = "id-kpi")
+    protected String idKpi;
     @XmlAttribute(name = "grupo")
     protected String grupo;
-    @XmlAttribute(name = "tipo")
-    protected String tipo;
     @XmlAttribute(name = "cumplido")
     protected Boolean cumplido;
-    @XmlAttribute(name = "consolidado")
-    protected Boolean consolidado;
-
-    /**
-     * Gets the value of the nombre property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Sets the value of the nombre property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNombre(String value) {
-        this.nombre = value;
-    }
+    @XmlAttribute(name = "global")
+    protected Boolean global;
 
     /**
      * Gets the value of the descripcion property.
@@ -184,51 +150,27 @@ public class MedicionKPI {
     }
 
     /**
-     * Gets the value of the minimo property.
+     * Gets the value of the idKpi property.
      * 
      * @return
      *     possible object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public Double getMinimo() {
-        return minimo;
+    public String getIdKpi() {
+        return idKpi;
     }
 
     /**
-     * Sets the value of the minimo property.
+     * Sets the value of the idKpi property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public void setMinimo(Double value) {
-        this.minimo = value;
-    }
-
-    /**
-     * Gets the value of the maximo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
-     */
-    public Double getMaximo() {
-        return maximo;
-    }
-
-    /**
-     * Sets the value of the maximo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
-     */
-    public void setMaximo(Double value) {
-        this.maximo = value;
+    public void setIdKpi(String value) {
+        this.idKpi = value;
     }
 
     /**
@@ -256,30 +198,6 @@ public class MedicionKPI {
     }
 
     /**
-     * Gets the value of the tipo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTipo() {
-        return tipo;
-    }
-
-    /**
-     * Sets the value of the tipo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTipo(String value) {
-        this.tipo = value;
-    }
-
-    /**
      * Gets the value of the cumplido property.
      * 
      * @return
@@ -304,27 +222,27 @@ public class MedicionKPI {
     }
 
     /**
-     * Gets the value of the consolidado property.
+     * Gets the value of the global property.
      * 
      * @return
      *     possible object is
      *     {@link Boolean }
      *     
      */
-    public Boolean isConsolidado() {
-        return consolidado;
+    public Boolean isGlobal() {
+        return global;
     }
 
     /**
-     * Sets the value of the consolidado property.
+     * Sets the value of the global property.
      * 
      * @param value
      *     allowed object is
      *     {@link Boolean }
      *     
      */
-    public void setConsolidado(Boolean value) {
-        this.consolidado = value;
+    public void setGlobal(Boolean value) {
+        this.global = value;
     }
 
 }

@@ -2,9 +2,6 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.tinet.cl/devops-kpi/" targetNamespace="http://www.tinet.cl/devops-kpi/">
     <complexType name="MedicionKPI">
     	<sequence>
-    		<element name="nombre" type="string" maxOccurs="1"
-    			minOccurs="1">
-    		</element>
 
     		<element name="descripcion" type="string"></element>
     		<element name="fecha" type="dateTime" maxOccurs="1"
@@ -14,17 +11,15 @@
     			minOccurs="1">
     		</element>
 
-    		<element name="interpretacion" type="string" maxOccurs="1"
+            <element name="interpretacion" type="string" maxOccurs="1"
     			minOccurs="0">
     		</element>
-
-    		<element name="minimo" type="double" maxOccurs="1" minOccurs="0"></element>
-    		<element name="maximo" type="double" maxOccurs="1" minOccurs="0"></element>
+
     	</sequence>
-    	<attribute name="grupo" type="string"></attribute>
-    	<attribute name="tipo" type="string"></attribute>
+        <attribute name="id-kpi" type="string"></attribute>
+        <attribute name="grupo" type="string"></attribute>
         <attribute name="cumplido" type="boolean"></attribute>
-        <attribute name="consolidado" type="boolean"></attribute>
+        <attribute name="global" type="boolean"></attribute>
 
     </complexType>
 
