@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
@@ -21,12 +22,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="titulo" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="medicion" type="{http://www.tinet.cl/devops-kpi/}MedicionKPI" maxOccurs="unbounded"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -36,7 +37,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ReporteGenerado", propOrder = {
-    "nombre",
     "fecha",
     "titulo",
     "descripcion",
@@ -45,8 +45,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class ReporteGenerado {
 
     @XmlElement(required = true)
-    protected String nombre;
-    @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fecha;
     @XmlElement(required = true)
@@ -54,30 +52,8 @@ public class ReporteGenerado {
     protected String descripcion;
     @XmlElement(required = true)
     protected List<MedicionKPI> medicion;
-
-    /**
-     * Gets the value of the nombre property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Sets the value of the nombre property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNombre(String value) {
-        this.nombre = value;
-    }
+    @XmlAttribute(name = "id")
+    protected String id;
 
     /**
      * Gets the value of the fecha property.
@@ -178,6 +154,30 @@ public class ReporteGenerado {
             medicion = new ArrayList<MedicionKPI>();
         }
         return this.medicion;
+    }
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
     }
 
 }

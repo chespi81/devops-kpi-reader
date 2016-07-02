@@ -102,14 +102,13 @@
 
     <complexType name="ReporteGenerado">
     	<sequence>
-    		<element name="nombre" type="string" maxOccurs="1"
+    		<element name="fecha" type="dateTime" maxOccurs="1"
     			minOccurs="1">
     		</element>
-            <element name="fecha" type="dateTime" maxOccurs="1"
+    		<element name="titulo" type="string" maxOccurs="1"
     			minOccurs="1">
     		</element>
-            <element name="titulo" type="string" maxOccurs="1" minOccurs="1"></element>
-            <element name="descripcion" type="string" maxOccurs="1"
+    		<element name="descripcion" type="string" maxOccurs="1"
     			minOccurs="0">
     		</element>
     		<element name="medicion" type="tns:MedicionKPI"
@@ -117,6 +116,7 @@
     		</element>
 
     	</sequence>
+    	<attribute name="id" type="string"></attribute>
     </complexType>
 
     <complexType name="ConfiguracionGeneral">
