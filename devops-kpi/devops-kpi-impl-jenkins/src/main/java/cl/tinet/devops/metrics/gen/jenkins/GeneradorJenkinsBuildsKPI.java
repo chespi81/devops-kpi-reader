@@ -34,13 +34,13 @@ public class GeneradorJenkinsBuildsKPI extends GeneradorJenkins {
 		try {
 			JenkinsServer server = getJenkinsServer();
 			Map<String, Job> proyectos = server.getJobs();
-			logger.log(Level.INFO, "Cantidad de proyectos a analizar: {0}.",
+			logger.log(Level.INFO, "Cantidad de proyectos a obtenidos: {0}.",
 					proyectos.size());
 			Map<String, AcumuladorAbstracto> global = new HashMap<String, AcumuladorAbstracto>();
 			for (Entry<String, Job> entry : proyectos.entrySet()) {
 				String proyecto = entry.getKey();
-				logger.log(Level.INFO, "Analizando proyecto {0}.", proyecto);
 				if (contabilizarProyecto(proyecto)) {
+					logger.log(Level.INFO, "Analizando proyecto {0}.", proyecto);
 					Map<String, AcumuladorAbstracto> datos = procesarProyecto(
 							kpis, null, entry.getValue(), server);
 					acumuladores.put(proyecto, datos.values());
@@ -49,6 +49,9 @@ public class GeneradorJenkinsBuildsKPI extends GeneradorJenkins {
 						obtenerAcumulador(kpi, global, true).acumular(
 								datos.get(kpi.getId()));
 					}
+				} else {
+					logger.log(Level.INFO, "No se analiza proyecto {0}.",
+							proyecto);
 				}
 			}
 			logger.log(Level.FINE, "KPIs globales generador: {0}.",
