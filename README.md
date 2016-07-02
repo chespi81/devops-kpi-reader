@@ -26,7 +26,7 @@ Con el fin de ejecutar correctamente las pruebas unitarias asociadas al proyecto
 
 Para ello, el certificado del sitio debe incorporarse a los certificados *confiables* para la JVM. Para ello debes agregarlo utilizando la herramienta **keytool** que es parte de la distribución de la JVM.
 
-[http://stackoverflow.com/questions/9619030/resolving-javax-net-ssl-sslhandshakeexception-sun-security-validator-validatore](http://stackoverflow.com/questions/9619030/resolving-javax-net-ssl-sslhandshakeexception-sun-security-validator-validatore)
+http://stackoverflow.com/questions/9619030/resolving-javax-net-ssl-sslhandshakeexception-sun-security-validator-validatore
 
 Para visualizar el listado de certificados de confianza, se puede ejecutar el siguiente comando.
 
@@ -34,7 +34,7 @@ keytool -list -keystore "%JAVA_HOME%/jre/lib/security/cacerts"
 
 Es importante contar con la contraseña que permite modificar el keystore que trae la JVM.
 
-[https://community.oracle.com/thread/1540678?start=0&tstart=0](https://community.oracle.com/thread/1540678?start=0&tstart=0)
+https://community.oracle.com/thread/1540678?start=0&tstart=0
 
 Por ejemplo:
 
