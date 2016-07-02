@@ -1,14 +1,12 @@
 package cl.tinet.devops.metrics;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import junit.framework.TestCase;
-
-import org.apache.commons.io.output.ByteArrayOutputStream;
-
 import cl.tinet.devops.metrics.gen.GeneradorException;
 
 public class ProcesadorReportesJAXBTest extends TestCase {
