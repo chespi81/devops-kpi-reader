@@ -203,6 +203,7 @@ public class ProcesadorReportes {
 			}
 			ReporteGenerado reporte = new ReporteGenerado();
 			reporte.setId(config.getId());
+			reporte.setKpis(config.getKpis());
 			reporte.setDescripcion(config.getDescripcion());
 			reporte.setFecha(DevOpsUtil.getFechaReporte());
 			reporte.setTitulo(config.getTitulo());

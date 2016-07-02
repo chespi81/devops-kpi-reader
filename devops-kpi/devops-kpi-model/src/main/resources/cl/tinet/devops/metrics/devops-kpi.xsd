@@ -106,6 +106,7 @@
     		<element name="descripcion" type="string" maxOccurs="1"
     			minOccurs="0">
     		</element>
+    		<element name="kpis" type="tns:TiposKPI" maxOccurs="1" minOccurs="0"></element>
     		<element name="medicion" type="tns:MedicionKPI"
     			maxOccurs="unbounded" minOccurs="1">
     		</element>

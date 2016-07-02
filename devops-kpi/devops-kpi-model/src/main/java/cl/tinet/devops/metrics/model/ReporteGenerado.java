@@ -25,6 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="titulo" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="kpis" type="{http://www.tinet.cl/devops-kpi/}TiposKPI" minOccurs="0"/>
  *         &lt;element name="medicion" type="{http://www.tinet.cl/devops-kpi/}MedicionKPI" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -40,6 +41,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fecha",
     "titulo",
     "descripcion",
+    "kpis",
     "medicion"
 })
 public class ReporteGenerado {
@@ -50,6 +52,7 @@ public class ReporteGenerado {
     @XmlElement(required = true)
     protected String titulo;
     protected String descripcion;
+    protected TiposKPI kpis;
     @XmlElement(required = true)
     protected List<MedicionKPI> medicion;
     @XmlAttribute(name = "id")
@@ -125,6 +128,30 @@ public class ReporteGenerado {
      */
     public void setDescripcion(String value) {
         this.descripcion = value;
+    }
+
+    /**
+     * Gets the value of the kpis property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TiposKPI }
+     *     
+     */
+    public TiposKPI getKpis() {
+        return kpis;
+    }
+
+    /**
+     * Sets the value of the kpis property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TiposKPI }
+     *     
+     */
+    public void setKpis(TiposKPI value) {
+        this.kpis = value;
     }
 
     /**
