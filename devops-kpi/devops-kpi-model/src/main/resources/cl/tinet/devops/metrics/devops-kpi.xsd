@@ -30,17 +30,23 @@
 
     <complexType name="TipoKPI">
     	<sequence>
-    		<element name="nombre" type="string" maxOccurs="1"
+    		<element name="descripcion" type="string" maxOccurs="1"
     			minOccurs="1">
     		</element>
-    		<element name="descripcion" type="string" maxOccurs="1" minOccurs="1"></element>
-    		<element name="minimo" type="tns:UmbralKPI"></element>
-    		<element name="maximo" type="tns:UmbralKPI"></element>
-    		<element name="generador" type="string" maxOccurs="1"
-    			minOccurs="1">
+            <element name="generador" type="string" maxOccurs="1" minOccurs="1">
     		</element>
-            <element name="acumulador" type="string" maxOccurs="1" minOccurs="1"></element>
+            <element name="acumulador" type="string" maxOccurs="1" minOccurs="1">
+    		</element>
+            <element name="minimo" type="tns:UmbralKPI" maxOccurs="1" minOccurs="0"></element>
+            <element name="maximo" type="tns:UmbralKPI" maxOccurs="1" minOccurs="0"></element>
+            <element name="interpretacion" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+
+
+
     	</sequence>
+    	<attribute name="id" type="string"></attribute>
     </complexType>
 
     <complexType name="UmbralKPI">

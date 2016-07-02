@@ -35,7 +35,7 @@ public class GeneradorDummy extends GeneradorAbstracto {
 		Collection<AcumuladorAbstracto> acums = new ArrayList<AcumuladorAbstracto>();
 		for (TipoKPI kpi : kpis) {
 			logger.log(Level.INFO, "KPI: {0}/{1}",
-					new Object[] { kpi.getNombre(), kpi.getAcumulador() });
+					new Object[] { kpi.getId(), kpi.getAcumulador() });
 			for (int i = 0; i < 14; i++) {
 				Map<String, AcumuladorAbstracto> cache = new HashMap<String, AcumuladorAbstracto>();
 				try {

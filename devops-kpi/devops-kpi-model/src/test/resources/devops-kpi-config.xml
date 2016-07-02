@@ -2,13 +2,6 @@
 <tns:configuracion xmlns:tns="http://www.tinet.cl/devops-kpi/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.tinet.cl/devops-kpi/ ../../main/resources/cl/tinet/devops/metrics/devops-kpi.xsd ">
-	<acumuladores>
-		<acumulador>
-			<nombre>acumulador-dummy</nombre>
-			<descripcion>Acumulador Dummy</descripcion>
-			<implementacion>cl.tinet.devops.metrics.gen.AcumuladorDummy</implementacion>
-		</acumulador>
-	</acumuladores>
 	<generadores>
 		<generador-reporte>
 			<nombre>generador-dummy</nombre>
@@ -25,17 +18,24 @@
 			</parametros>
 		</generador-reporte>
 	</generadores>
+	<acumuladores>
+		<acumulador>
+			<nombre>acumulador-dummy</nombre>
+			<descripcion>Acumulador Dummy</descripcion>
+			<implementacion>cl.tinet.devops.metrics.gen.AcumuladorDummy</implementacion>
+		</acumulador>
+	</acumuladores>
 	<reportes>
 		<reporte>
 			<nombre>reporte-1</nombre>
 			<titulo>Reporte de Prueba</titulo>
 			<descripcion>Este reporte representa bla bla bla.</descripcion>
 			<kpis>
-				<kpi>
-					<nombre>KPI1</nombre>
-					<acumulador>acumulador-dummy</acumulador>
-					<descripcion>Este es el valor {1}.</descripcion>
+				<kpi id="KPI1">
+					<descripcion>KPI de prueba 1</descripcion>
 					<generador>generador-dummy</generador>
+					<acumulador>acumulador-dummy</acumulador>
+					<interpretacion>Este es el valor {1}.</interpretacion>
 				</kpi>
 			</kpis>
 		</reporte>

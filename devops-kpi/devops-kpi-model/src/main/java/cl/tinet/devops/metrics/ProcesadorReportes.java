@@ -103,13 +103,13 @@ public class ProcesadorReportes {
 
 	private void validarKPI(TipoKPI kpi) throws ConfiguracionException,
 			AcumuladorException {
-		if (kpi.getNombre() == null) {
+		if (kpi.getId() == null) {
 			throw new ConfiguracionException(
-					"Debe especificar el nombre del KPI.");
+					"Debe especificar el ID del KPI.");
 		}
-		if (kpi.getDescripcion() == null) {
+		if (kpi.getInterpretacion() == null) {
 			throw new ConfiguracionException(
-					"La descripcion es necesaria para interpretar el KPI.");
+					"La interpretacion es necesaria para describir el KPI.");
 		}
 		if ((kpi.getGenerador() == null) || (kpi.getAcumulador() == null)) {
 			throw new ConfiguracionException(
@@ -120,7 +120,7 @@ public class ProcesadorReportes {
 					"El generador especificado no fue definido.");
 		}
 		AcumuladorAbstracto.obtenerAcumulador(kpi.getAcumulador(),
-				kpi.getNombre());
+				kpi.getId());
 	}
 
 	private void configurarGeneradores(GeneradoresKPI config)
@@ -201,7 +201,7 @@ public class ProcesadorReportes {
 		try {
 			Map<String, TipoKPI> kpis = new HashMap<String, TipoKPI>();
 			for (TipoKPI kpi : config.getKpis().getKpi()) {
-				kpis.put(kpi.getNombre(), kpi);
+				kpis.put(kpi.getId(), kpi);
 			}
 			ReporteGenerado reporte = new ReporteGenerado();
 			reporte.setNombre(config.getNombre());
@@ -233,7 +233,7 @@ public class ProcesadorReportes {
 			throws DatatypeConfigurationException {
 		MedicionKPI medicion = new MedicionKPI();
 		medicion.setTipo(kpi.getAcumulador());
-		medicion.setNombre(kpi.getNombre());
+		medicion.setNombre(kpi.getDescripcion());
 		medicion.setFecha(DevOpsUtil.getFechaReporte(acumulador.getFecha()));
 		double valor = acumulador.calcular().doubleValue();
 		Double minimo = obtenerUmbral(kpi.getMinimo());
@@ -249,8 +249,8 @@ public class ProcesadorReportes {
 			medicion.setMaximo(maximo);
 		}
 		medicion.setCumplido(cumplido);
-		String inter = MessageFormat.format(kpi.getDescripcion(),
-				kpi.getNombre(), acumulador.calcular(), minimo, maximo,
+		String inter = MessageFormat.format(kpi.getInterpretacion(),
+				kpi.getDescripcion(), acumulador.calcular(), minimo, maximo,
 				acumulador.getFecha());
 		medicion.setInterpretacion(inter);
 		medicion.setConsolidado(acumulador.isGlobal());

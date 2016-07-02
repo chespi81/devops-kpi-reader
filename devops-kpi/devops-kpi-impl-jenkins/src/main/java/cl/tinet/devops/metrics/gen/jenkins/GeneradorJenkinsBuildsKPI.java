@@ -36,7 +36,7 @@ public class GeneradorJenkinsBuildsKPI extends GeneradorJenkins {
 					acumuladores.put(entry.getKey(), datos.values());
 					for (TipoKPI kpi : kpis) {
 						obtenerAcumulador(kpi, global, true).acumular(
-								datos.get(kpi.getNombre()));
+								datos.get(kpi.getId()));
 					}
 				}
 			}
@@ -65,7 +65,7 @@ public class GeneradorJenkinsBuildsKPI extends GeneradorJenkins {
 					Map<String, AcumuladorAbstracto> map = procesarProyecto(
 							kpis, opt.get(), entry.getValue(), server);
 					for (TipoKPI kpi : kpis) {
-						AcumuladorAbstracto item = map.get(kpi.getNombre());
+						AcumuladorAbstracto item = map.get(kpi.getId());
 						obtenerAcumulador(kpi, cache).acumular(item);
 					}
 				}

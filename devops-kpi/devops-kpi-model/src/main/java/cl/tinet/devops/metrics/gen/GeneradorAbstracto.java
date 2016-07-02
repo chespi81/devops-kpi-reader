@@ -24,11 +24,11 @@ public abstract class GeneradorAbstracto implements Generador {
 	public AcumuladorAbstracto obtenerAcumulador(TipoKPI kpi,
 			Map<String, AcumuladorAbstracto> cache, boolean global)
 			throws AcumuladorException {
-		String llave = kpi.getNombre();
+		String llave = kpi.getId();
 		AcumuladorAbstracto acumulador = cache.get(llave);
 		if (acumulador == null) {
 			acumulador = AcumuladorAbstracto.obtenerAcumulador(
-					kpi.getAcumulador(), kpi.getNombre(), global);
+					kpi.getAcumulador(), kpi.getId(), global);
 			cache.put(llave, acumulador);
 		}
 		return acumulador;

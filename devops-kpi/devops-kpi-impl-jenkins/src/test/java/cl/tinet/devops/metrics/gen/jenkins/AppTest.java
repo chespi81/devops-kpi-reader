@@ -45,18 +45,21 @@ public class AppTest extends TestCase {
 
 	public static void main(String[] args) throws GeneradorException {
 		TipoKPI kpi1 = new TipoKPI();
-		kpi1.setNombre("PRUEBA1");
-		kpi1.setDescripcion("{0}. Tiempo Promedio. Promedio {1}, Máximo {3}.");
+		kpi1.setId("PRUEBA1");
+		kpi1.setDescripcion("KPI de prueba 1");
+		kpi1.setInterpretacion("{0}. Tiempo Promedio. Promedio {1}, Máximo {3}.");
 		kpi1.setAcumulador("promedio");
 
 		TipoKPI kpi2 = new TipoKPI();
-		kpi2.setNombre("PRUEBA2");
-		kpi2.setDescripcion("{0}. Tiempo Promedio. Promedio {1}, Máximo {3}.");
+		kpi2.setId("PRUEBA2");
+		kpi2.setDescripcion("KPI de prueba 2");
+		kpi2.setInterpretacion("{0}. Tiempo Promedio. Promedio {1}, Máximo {3}.");
 		kpi2.setAcumulador("tasa-exito");
 
 		TipoKPI kpi3 = new TipoKPI();
-		kpi3.setNombre("PRUEBA3");
-		kpi3.setDescripcion("{0}. Tiempo Promedio. Promedio {1}, Máximo {3}.");
+		kpi3.setId("PRUEBA3");
+		kpi3.setDescripcion("KPI de prueba 3");
+		kpi3.setInterpretacion("{0}. Tiempo Promedio. Promedio {1}, Máximo {3}.");
 		kpi3.setAcumulador("tasa-completado");
 
 		AcumuladorAbstracto.registrarAcumulador("promedio",
