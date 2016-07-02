@@ -10,7 +10,7 @@ El objetivo es crear una estructura configurable y extensible que permita genera
 
 ## Como construir el proyecto
 
-Se trata de un proyecto maven, por lo que la construcción se realiza utilizando esta herramienta, la cual debe encontrarse instalada en el equipo donde se realice la compilación.
+Se trata de un proyecto maven, por lo que la construcción se realiza utilizando esta herramienta, la cual debe encontrarse instalada en el equipo donde se realice la compilación. Para construirlo se debe ejecutar el comando **mvn package**.
 
 ### Dependencias
 
@@ -24,17 +24,19 @@ https://github.com/jenkinsci/java-client-api
 
 Con el fin de ejecutar correctamente las pruebas unitarias asociadas al proyecto, es necesario que la JVM utilizada para construir, y en particular para ejeuctar las pruebas unitarias, considere como válido el certificado digital del servidor jenkins público https://ci.jenkins.io/
 
-Para ello, el certificado del sitio debe incorporarse a los certificados *confiables* para la JVM. Para ello debes agregarlo utilizando la herramienta **keytool** que es parte de la distribución de la JVM.
+Para ello, el certificado del sitio debe incorporarse a los certificados *confiables* para la JVM. Para ello debes agregarlo utilizando la herramienta **keytool** que es parte de la distribución de la JVM. El siguiente enlace explica la causa y como resolverlo de la forma correcta.
 
 http://stackoverflow.com/questions/9619030/resolving-javax-net-ssl-sslhandshakeexception-sun-security-validator-validatore
+
+#### Agregando el certificado de jenkins a los certificados de confianza de la JVM.
 
 Para visualizar el listado de certificados de confianza, se puede ejecutar el siguiente comando.
 
 keytool -list -keystore "%JAVA_HOME%/jre/lib/security/cacerts"
 
-Es importante contar con la contraseña que permite modificar el keystore que trae la JVM.
+Para agregar el certificado, este se debe descargar y luego agregar al listado de certificados de confianza. Para hacerlo, es **muy importante contar con la contraseña** que permite modificar el keystore que trae la JVM. Por defecto la contraseña es ***changeit*** [clave].
 
-https://community.oracle.com/thread/1540678?start=0&tstart=0
+[clave](https://community.oracle.com/thread/1540678?start=0&tstart=0)
 
 Por ejemplo:
 
