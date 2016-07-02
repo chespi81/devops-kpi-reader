@@ -39,7 +39,3 @@ https://community.oracle.com/thread/1540678?start=0&tstart=0
 Por ejemplo:
 
 keytool -import -noprompt -trustcacerts -alias ci.jenkins.io -file ci.jenkins.io.cert -keystore "%JAVA_HOME%/jre/lib/security/cacerts"
-
-### Construcción
-
-Estas son las instrucciones para construir el proyecto.
