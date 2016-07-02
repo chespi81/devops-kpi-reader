@@ -72,9 +72,9 @@ public class ProcesadorReportes {
 				throw new IllegalArgumentException(
 						"La configuracion del reporte no debe ser nula.");
 			}
-			if ((config.getTitulo() == null) || (config.getNombre() == null)) {
+			if ((config.getTitulo() == null) || (config.getId() == null)) {
 				throw new ConfiguracionException(
-						"El reporte debe tener un título y un nombre.");
+						"El reporte debe tener un título y un ID.");
 			}
 			validarKPIs(config.getKpis());
 		}
@@ -104,8 +104,7 @@ public class ProcesadorReportes {
 	private void validarKPI(TipoKPI kpi) throws ConfiguracionException,
 			AcumuladorException {
 		if (kpi.getId() == null) {
-			throw new ConfiguracionException(
-					"Debe especificar el ID del KPI.");
+			throw new ConfiguracionException("Debe especificar el ID del KPI.");
 		}
 		if (kpi.getInterpretacion() == null) {
 			throw new ConfiguracionException(
@@ -119,8 +118,7 @@ public class ProcesadorReportes {
 			throw new ConfiguracionException(
 					"El generador especificado no fue definido.");
 		}
-		AcumuladorAbstracto.obtenerAcumulador(kpi.getAcumulador(),
-				kpi.getId());
+		AcumuladorAbstracto.obtenerAcumulador(kpi.getAcumulador(), kpi.getId());
 	}
 
 	private void configurarGeneradores(GeneradoresKPI config)
@@ -204,7 +202,7 @@ public class ProcesadorReportes {
 				kpis.put(kpi.getId(), kpi);
 			}
 			ReporteGenerado reporte = new ReporteGenerado();
-			reporte.setNombre(config.getNombre());
+			reporte.setNombre(config.getId());
 			reporte.setDescripcion(config.getDescripcion());
 			reporte.setFecha(DevOpsUtil.getFechaReporte());
 			reporte.setTitulo(config.getTitulo());

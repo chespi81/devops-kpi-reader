@@ -60,16 +60,16 @@
 
     <complexType name="ConfiguracionReporte">
     	<sequence>
-    		<element name="nombre" type="string" maxOccurs="1"
+    		<element name="titulo" type="string" maxOccurs="1"
     			minOccurs="1">
     		</element>
-            <element name="titulo" type="string" maxOccurs="1" minOccurs="1"></element>
-            <element name="descripcion" type="string"></element>
-            <element name="kpis" type="tns:TiposKPI"
-            	maxOccurs="1" minOccurs="0">
-            </element>
+    		<element name="descripcion" type="string"></element>
+    		<element name="kpis" type="tns:TiposKPI" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
 
     	</sequence>
+    	<attribute name="id" type="string"></attribute>
     </complexType>
 
     <complexType name="GeneradorKPI">
