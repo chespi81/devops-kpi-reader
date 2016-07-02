@@ -22,9 +22,7 @@ https://github.com/jenkinsci/java-client-api
 
 Con el fin de ejecutar correctamente las pruebas unitarias asociadas al proyecto, es necesario que la JVM utilizada para construir, y en particular para ejeuctar las pruebas unitarias, considere como válido el certificado digital del servidor jenkins público https://ci.jenkins.io/
 
-Para ello, el certificado del sitio debe incorporarse a los certificados *confiables* para la JVM. Para ello debes agregarlo utilizando la herramienta **keytool** que es parte de la distribución de la JVM. El siguiente enlace explica la causa y como resolverlo de la forma correcta.
-
-http://stackoverflow.com/questions/9619030/resolving-javax-net-ssl-sslhandshakeexception-sun-security-validator-validatore
+Para ello, el certificado del sitio debe incorporarse a los certificados *confiables* para la JVM. Para ello debes agregarlo utilizando la herramienta **keytool** que es parte de la distribución de la JVM. Este [enlace](http://stackoverflow.com/questions/9619030/resolving-javax-net-ssl-sslhandshakeexception-sun-security-validator-validatore) explica la causa y como resolverlo de la forma correcta.
 
 #### Cómo agregar el certificado del [jenkins público](https://ci.jenkins.io/) a los certificados de confianza de la JVM.
 
