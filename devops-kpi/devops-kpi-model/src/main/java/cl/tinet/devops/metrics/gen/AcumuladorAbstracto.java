@@ -24,17 +24,17 @@ public abstract class AcumuladorAbstracto implements Serializable {
 		tipos = new HashMap<String, Class<? extends AcumuladorAbstracto>>();
 	}
 
-	public synchronized static void registrarAcumulador(String nombre,
+	public synchronized static void registrarAcumulador(String id,
 			Class<? extends AcumuladorAbstracto> tipo) {
-		if (nombre == null) {
+		if (id == null) {
 			throw new IllegalArgumentException(
-					"El nombre del acumulador no debe ser nulo");
+					"El ID del acumulador no debe ser nulo");
 		}
 		if (tipo == null) {
 			throw new IllegalArgumentException(
 					"Debe especificar un acumulador no nulo.");
 		}
-		tipos.put(nombre, tipo);
+		tipos.put(id, tipo);
 	}
 
 	public static AcumuladorAbstracto obtenerAcumulador(String nombre,

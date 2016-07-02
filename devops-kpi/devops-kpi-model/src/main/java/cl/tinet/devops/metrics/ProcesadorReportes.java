@@ -173,7 +173,7 @@ public class ProcesadorReportes {
 					}
 					Class<?> clazz = Thread.currentThread()
 							.getContextClassLoader().loadClass(impl);
-					AcumuladorAbstracto.registrarAcumulador(acum.getNombre(),
+					AcumuladorAbstracto.registrarAcumulador(acum.getId(),
 							clazz.asSubclass(AcumuladorAbstracto.class));
 				}
 			} catch (ClassNotFoundException | ClassCastException ce) {

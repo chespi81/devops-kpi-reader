@@ -19,8 +19,7 @@
 		</generador-reporte>
 	</generadores>
 	<acumuladores>
-		<acumulador>
-			<nombre>acumulador-dummy</nombre>
+		<acumulador id="acumulador-dummy">
 			<descripcion>Acumulador Dummy</descripcion>
 			<implementacion>cl.tinet.devops.metrics.gen.AcumuladorDummy</implementacion>
 		</acumulador>
