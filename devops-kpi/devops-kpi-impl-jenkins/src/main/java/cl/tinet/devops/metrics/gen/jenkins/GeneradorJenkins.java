@@ -53,7 +53,7 @@ public abstract class GeneradorJenkins extends GeneradorAbstracto {
 	public void inicializar(GeneradorKPI config) throws GeneradorException {
 		Map<String, Parametro> parametros = DevOpsUtil.getParametros(config
 				.getParametros());
-		setNombre(config.getNombre());
+		setNombre(config.getDescripcion());
 		servidor = DevOpsUtil.getString(LLAVE_SERVIDOR_JENKINS, parametros);
 		if (servidor == null) {
 			throw new ParametroRequeridoException(LLAVE_SERVIDOR_JENKINS);

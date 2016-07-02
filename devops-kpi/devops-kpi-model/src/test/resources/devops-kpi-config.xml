@@ -3,8 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.tinet.cl/devops-kpi/ ../../main/resources/cl/tinet/devops/metrics/devops-kpi.xsd ">
 	<generadores>
-		<generador-reporte>
-			<nombre>generador-dummy</nombre>
+		<generador-reporte id="generador-dummy">
+			<descripcion>Generador dummy</descripcion>
 			<implementacion>cl.tinet.devops.metrics.gen.GeneradorDummy</implementacion>
 			<parametros>
 				<parametro>

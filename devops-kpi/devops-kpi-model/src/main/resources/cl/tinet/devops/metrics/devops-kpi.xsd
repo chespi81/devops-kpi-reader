@@ -74,12 +74,17 @@
 
     <complexType name="GeneradorKPI">
     	<sequence>
-    		<element name="nombre" type="string" maxOccurs="1" minOccurs="1"></element>
-    		<element name="implementacion" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="descripcion" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="implementacion" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
     		<element name="parametros" type="tns:Parametros"
     			maxOccurs="1" minOccurs="0">
     		</element>
     	</sequence>
+    	<attribute name="id" type="string"></attribute>
     </complexType>
 
     <complexType name="Parametro">

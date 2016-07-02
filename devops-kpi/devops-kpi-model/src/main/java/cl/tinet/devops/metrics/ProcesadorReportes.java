@@ -147,7 +147,7 @@ public class ProcesadorReportes {
 				Generador generador = clazz.asSubclass(Generador.class)
 						.newInstance();
 				generador.inicializar(def);
-				generadores.put(def.getNombre(), generador);
+				generadores.put(def.getId(), generador);
 			}
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException e) {

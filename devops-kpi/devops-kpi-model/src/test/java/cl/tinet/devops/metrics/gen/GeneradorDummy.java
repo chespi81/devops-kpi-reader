@@ -19,7 +19,7 @@ public class GeneradorDummy extends GeneradorAbstracto {
 	@Override
 	public void inicializar(GeneradorKPI config) throws GeneradorException {
 		logger.info("Configurando generador.");
-		logger.log(Level.INFO, "Generador     : {0}", config.getNombre());
+		logger.log(Level.INFO, "Generador     : {0}", config.getId());
 		logger.log(Level.INFO, "Implementacion: {0}",
 				config.getImplementacion());
 		for (Parametro parametro : config.getParametros().getParametro()) {

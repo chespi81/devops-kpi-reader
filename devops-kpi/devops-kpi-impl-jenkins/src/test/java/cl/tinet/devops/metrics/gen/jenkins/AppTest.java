@@ -75,28 +75,18 @@ public class AppTest extends TestCase {
 		kpi1.setMaximo(umbral);
 		GeneradorJenkinsBuildsKPI generador = new GeneradorJenkinsBuildsKPI();
 		GeneradorKPI config = new GeneradorKPI();
-		config.setNombre("JENKINS");
+		config.setId("JENKINS");
+		config.setDescripcion("Generador Jenkins");
 		config.setImplementacion(GeneradorJenkinsBuildsKPI.class.getName());
 		Parametros parametros = new Parametros();
 		Parametro p = new Parametro();
 		p.setNombre(GeneradorJenkins.LLAVE_SERVIDOR_JENKINS);
 		p.setValor("http://jenkins-dc.tinet.cl");
-		// p.setValor("http://jenkins.tinet.cl");
 		parametros.getParametro().add(p);
 
 		p = new Parametro();
 		p.setNombre(GeneradorJenkins.LLAVE_INDICADOR_AUTENTICACION);
-		p.setValor("true");
-		parametros.getParametro().add(p);
-
-		p = new Parametro();
-		p.setNombre(GeneradorJenkins.LLAVE_USUARIO_JENKINS);
-		p.setValor("rsanmartin");
-		parametros.getParametro().add(p);
-
-		p = new Parametro();
-		p.setNombre(GeneradorJenkins.LLAVE_PASSWORD_JENKINS);
-		p.setValor("Lenovo8159");
+		p.setValor("false");
 		parametros.getParametro().add(p);
 
 		p = new Parametro();
