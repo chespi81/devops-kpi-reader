@@ -14,7 +14,7 @@ Se trata de un proyecto maven, por lo que la construcción se realiza utilizando 
 
 Este proyecto depende de utilizar un cliente para utilizar la API rest que publica Jenkins (y otras fuentes de información), con el fin de obtener métricas asociadas a los proyectos y builds.
 
-Para compilar este proyecto **se requiere haber construido e instalado** el proyecto *java-client-api*, cuyo código fuente puede ser descargado desde la siguiente dirección.
+Para compilar este proyecto **se requiere haber construido e instalado** el proyecto *java-client-api*, cuyo código fuente puede ser descargado desde la siguiente dirección. Lo importante es basarse en la versión de la cual depende el proyecto (0.3.5 en la fecha en la que se generó este documento).
 
 https://github.com/jenkinsci/java-client-api
 
