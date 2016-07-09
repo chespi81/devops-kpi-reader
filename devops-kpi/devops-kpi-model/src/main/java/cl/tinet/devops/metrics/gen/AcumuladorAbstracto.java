@@ -83,7 +83,10 @@ public abstract class AcumuladorAbstracto implements Serializable {
 	}
 
 	public Date getFecha() {
-		return fecha;
+		if (fecha == null) {
+			return null;
+		}
+		return new Date(fecha.getTime());
 	}
 
 	public boolean isGlobal() {
