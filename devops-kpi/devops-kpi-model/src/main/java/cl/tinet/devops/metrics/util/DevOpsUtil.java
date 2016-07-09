@@ -16,6 +16,9 @@ import cl.tinet.devops.metrics.model.Parametros;
 
 public class DevOpsUtil {
 
+	private DevOpsUtil() {
+	}
+	
 	public static String getString(String nombre,
 			Map<String, Parametro> parametros) {
 		String resultado = null;
