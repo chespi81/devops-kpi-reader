@@ -7,7 +7,6 @@ import cl.tinet.devops.metrics.gen.bitbucket.invoker.ApiClient;
 import cl.tinet.devops.metrics.gen.bitbucket.invoker.Configuration;
 import cl.tinet.devops.metrics.gen.bitbucket.model.*;
 import cl.tinet.devops.metrics.gen.bitbucket.invoker.Pair;
-
 import cl.tinet.devops.metrics.gen.bitbucket.model.PaginatedRepositories;
 import cl.tinet.devops.metrics.gen.bitbucket.model.Error;
 import cl.tinet.devops.metrics.gen.bitbucket.model.Commitstatus;
@@ -15,6 +14,8 @@ import cl.tinet.devops.metrics.gen.bitbucket.model.PaginatedCommitstatuses;
 import cl.tinet.devops.metrics.gen.bitbucket.model.Repository;
 import cl.tinet.devops.metrics.gen.bitbucket.model.PaginatedWebhookSubscriptions;
 import cl.tinet.devops.metrics.gen.bitbucket.model.WebhookSubscription;
+
+
 
 
 import java.util.ArrayList;
@@ -77,51 +78,94 @@ public class RepositoriesApi {
     GenericType<PaginatedRepositories> localVarReturnType = new GenericType<PaginatedRepositories>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
-  /**
-   * 
-   * 
-   * @param username  (required)
-   * @param role  Filters the result based on the authenticated user&#39;s role on each repository.  * **member**: returns repositories to which the user has explicit read access * **contributor**: returns repositories to which the user has explicit write access * **admin**: returns repositories to which the user has explicit administrator access * **owner**: returns all repositories owned by the current user  (optional)
-   * @return PaginatedRepositories
-   * @throws ApiException if fails to make API call
-   */
-  public PaginatedRepositories repositoriesUsernameGet(String username, String role) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'username' is set
-    if (username == null) {
-      throw new ApiException(400, "Missing the required parameter 'username' when calling repositoriesUsernameGet");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/repositories/{username}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "username" + "\\}", apiClient.escapeString(username.toString()));
 
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+	/**
+	 * 
+	 * 
+	 * @param username
+	 *            (required)
+	 * @param role
+	 *            Filters the result based on the authenticated user&#39;s role
+	 *            on each repository. * **member**: returns repositories to
+	 *            which the user has explicit read access * **contributor**:
+	 *            returns repositories to which the user has explicit write
+	 *            access * **admin**: returns repositories to which the user has
+	 *            explicit administrator access * **owner**: returns all
+	 *            repositories owned by the current user (optional)
+	 * @return PaginatedRepositories
+	 * @throws ApiException
+	 *             if fails to make API call
+	 */
+	public PaginatedRepositories repositoriesUsernameGet(String username,
+			String role) throws ApiException {
+		return repositoriesUsernameGet(username, role, 1);
+	}
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "role", role));
+	/**
+	 * 
+	 * 
+	 * @param username
+	 *            (required)
+	 * @param role
+	 *            Filters the result based on the authenticated user&#39;s role
+	 *            on each repository. * **member**: returns repositories to
+	 *            which the user has explicit read access * **contributor**:
+	 *            returns repositories to which the user has explicit write
+	 *            access * **admin**: returns repositories to which the user has
+	 *            explicit administrator access * **owner**: returns all
+	 *            repositories owned by the current user (optional)
+	 * @param page
+	 *            The page number.
+	 * @return PaginatedRepositories
+	 * @throws ApiException
+	 *             if fails to make API call
+	 */
+	public PaginatedRepositories repositoriesUsernameGet(String username,
+			String role, int page) throws ApiException {
+		Object localVarPostBody = null;
 
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+		// verify the required parameter 'username' is set
+		if (username == null) {
+			throw new ApiException(
+					400,
+					"Missing the required parameter 'username' when calling repositoriesUsernameGet");
+		}
 
-    final String[] localVarContentTypes = {
-      "application/json"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		// create path and map variables
+		String localVarPath = "/repositories/{username}".replaceAll(
+				"\\{format\\}", "json").replaceAll("\\{" + "username" + "\\}",
+				apiClient.escapeString(username.toString()));
 
-    String[] localVarAuthNames = new String[] { "api_key", "oauth2", "basic" };
+		// query params
+		List<Pair> localVarQueryParams = new ArrayList<Pair>();
+		Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+		Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    GenericType<PaginatedRepositories> localVarReturnType = new GenericType<PaginatedRepositories>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
+		localVarQueryParams
+				.addAll(apiClient.parameterToPairs("", "role", role));
+		localVarQueryParams
+				.addAll(apiClient.parameterToPairs("", "page", page));
+
+		final String[] localVarAccepts = { "application/json" };
+		final String localVarAccept = apiClient
+				.selectHeaderAccept(localVarAccepts);
+
+		final String[] localVarContentTypes = { "application/json" };
+		final String localVarContentType = apiClient
+				.selectHeaderContentType(localVarContentTypes);
+
+		String[] localVarAuthNames = new String[] { "api_key", "oauth2",
+				"basic" };
+
+		GenericType<PaginatedRepositories> localVarReturnType = new GenericType<PaginatedRepositories>() {
+		};
+		return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams,
+				localVarPostBody, localVarHeaderParams, localVarFormParams,
+				localVarAccept, localVarContentType, localVarAuthNames,
+				localVarReturnType);
+	}
+
+/**
    * 
    * 
    * @param username  (required)
