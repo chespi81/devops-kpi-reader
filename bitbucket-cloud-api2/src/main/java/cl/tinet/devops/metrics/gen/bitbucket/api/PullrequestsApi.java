@@ -7,10 +7,12 @@ import cl.tinet.devops.metrics.gen.bitbucket.invoker.ApiClient;
 import cl.tinet.devops.metrics.gen.bitbucket.invoker.Configuration;
 import cl.tinet.devops.metrics.gen.bitbucket.model.*;
 import cl.tinet.devops.metrics.gen.bitbucket.invoker.Pair;
-
 import cl.tinet.devops.metrics.gen.bitbucket.model.Error;
+import cl.tinet.devops.metrics.gen.bitbucket.model.PaginatedPullrequest;
 import cl.tinet.devops.metrics.gen.bitbucket.model.Pullrequest;
 import cl.tinet.devops.metrics.gen.bitbucket.model.PaginatedCommitstatuses;
+
+
 
 
 import java.util.ArrayList;
@@ -303,58 +305,100 @@ public class PullrequestsApi {
     GenericType<Error> localVarReturnType = new GenericType<Error>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
-  /**
-   * 
-   * 
-   * @param username  (required)
-   * @param repoSlug  (required)
-   * @param state Only return pull requests that in this state. This parameter can be repeated. (optional)
-   * @return Error
-   * @throws ApiException if fails to make API call
-   */
-  public Error repositoriesUsernameRepoSlugPullrequestsGet(String username, String repoSlug, String state) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'username' is set
-    if (username == null) {
-      throw new ApiException(400, "Missing the required parameter 'username' when calling repositoriesUsernameRepoSlugPullrequestsGet");
-    }
-    
-    // verify the required parameter 'repoSlug' is set
-    if (repoSlug == null) {
-      throw new ApiException(400, "Missing the required parameter 'repoSlug' when calling repositoriesUsernameRepoSlugPullrequestsGet");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/repositories/{username}/{repo_slug}/pullrequests".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "username" + "\\}", apiClient.escapeString(username.toString()))
-      .replaceAll("\\{" + "repo_slug" + "\\}", apiClient.escapeString(repoSlug.toString()));
 
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+	/**
+	 * 
+	 * 
+	 * @param username
+	 *            (required)
+	 * @param repoSlug
+	 *            (required)
+	 * @param state
+	 *            Only return pull requests that in this state. This parameter
+	 *            can be repeated. (optional)
+	 * @return Error
+	 * @throws ApiException
+	 *             if fails to make API call
+	 */
+	public PaginatedPullrequest repositoriesUsernameRepoSlugPullrequestsGet(
+			String username, String repoSlug, String state) throws ApiException {
+		return repositoriesUsernameRepoSlugPullrequestsGet(username, repoSlug,
+				state, 1);
+	}
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "state", state));
+	/**
+	 * 
+	 * 
+	 * @param username
+	 *            (required)
+	 * @param repoSlug
+	 *            (required)
+	 * @param state
+	 *            Only return pull requests that in this state. This parameter
+	 *            can be repeated. (optional)
+	 * @param page
+	 *            The page number.
+	 * @return Error
+	 * @throws ApiException
+	 *             if fails to make API call
+	 */
+	public PaginatedPullrequest repositoriesUsernameRepoSlugPullrequestsGet(
+			String username, String repoSlug, String state, int page)
+			throws ApiException {
+		Object localVarPostBody = null;
 
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+		// verify the required parameter 'username' is set
+		if (username == null) {
+			throw new ApiException(
+					400,
+					"Missing the required parameter 'username' when calling repositoriesUsernameRepoSlugPullrequestsGet");
+		}
 
-    final String[] localVarContentTypes = {
-      "application/json"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		// verify the required parameter 'repoSlug' is set
+		if (repoSlug == null) {
+			throw new ApiException(
+					400,
+					"Missing the required parameter 'repoSlug' when calling repositoriesUsernameRepoSlugPullrequestsGet");
+		}
 
-    String[] localVarAuthNames = new String[] { "api_key", "oauth2", "basic" };
+		// create path and map variables
+		String localVarPath = "/repositories/{username}/{repo_slug}/pullrequests"
+				.replaceAll("\\{format\\}", "json")
+				.replaceAll("\\{" + "username" + "\\}",
+						apiClient.escapeString(username.toString()))
+				.replaceAll("\\{" + "repo_slug" + "\\}",
+						apiClient.escapeString(repoSlug.toString()));
 
-    GenericType<Error> localVarReturnType = new GenericType<Error>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
+		// query params
+		List<Pair> localVarQueryParams = new ArrayList<Pair>();
+		Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+		Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+		localVarQueryParams.addAll(apiClient.parameterToPairs("", "state",
+				state));
+		localVarQueryParams
+				.addAll(apiClient.parameterToPairs("", "page", page));
+
+		final String[] localVarAccepts = { "application/json" };
+		final String localVarAccept = apiClient
+				.selectHeaderAccept(localVarAccepts);
+
+		final String[] localVarContentTypes = { "application/json" };
+		final String localVarContentType = apiClient
+				.selectHeaderContentType(localVarContentTypes);
+
+		String[] localVarAuthNames = new String[] { "api_key", "oauth2",
+				"basic" };
+
+		GenericType<PaginatedPullrequest> localVarReturnType = new GenericType<PaginatedPullrequest>() {
+		};
+		return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams,
+				localVarPostBody, localVarHeaderParams, localVarFormParams,
+				localVarAccept, localVarContentType, localVarAuthNames,
+				localVarReturnType);
+	}
+
+/**
    * 
    * 
    * @param username  (required)
