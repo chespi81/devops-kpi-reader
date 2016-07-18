@@ -18,6 +18,7 @@ import cl.tinet.devops.metrics.model.TipoKPI;
 import com.google.common.base.Optional;
 import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.model.Build;
+import com.offbytwo.jenkins.model.BuildWithDetails;
 import com.offbytwo.jenkins.model.FolderJob;
 import com.offbytwo.jenkins.model.Job;
 import com.offbytwo.jenkins.model.JobWithDetails;
@@ -103,8 +104,9 @@ public class GeneradorJenkinsBuildsKPI extends GeneradorJenkins {
 			}
 			List<Build> builds = jd.getBuilds();
 			for (Build build : builds) {
+				BuildWithDetails details = build.details();
 				for (TipoKPI kpi : kpis) {
-					obtenerAcumulador(kpi, cache).acumular(build.details());
+					obtenerAcumulador(kpi, cache).acumular(details);
 				}
 			}
 		}
