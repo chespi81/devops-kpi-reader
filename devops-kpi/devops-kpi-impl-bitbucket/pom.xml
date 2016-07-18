@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cl.tinet.devops.metrics</groupId>
+		<artifactId>devops-kpi</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>devops-kpi-impl-bitbucket</artifactId>
+	<name>devops-kpi-impl-bitbucket</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<swagger-annotations-version>1.5.8</swagger-annotations-version>
+		<jersey-version>1.19.1</jersey-version>
+		<jackson-version>2.7.5</jackson-version>
+		<jodatime-version>2.9.4</jodatime-version>
+	</properties>
+	<dependencies>
+
+		<!-- HTTP client: jersey-client -->
+
+		<!-- JSON processing: jackson -->
+
+		<!-- Base64 encoding that works in both JVM and Android -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>cl.tinet.devops.metrics</groupId>
+			<artifactId>devops-kpi-model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cl.tinet.bitbucket</groupId>
+			<artifactId>bitbucket-cloud-api2</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
+</project>
